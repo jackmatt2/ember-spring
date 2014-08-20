@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ember Starter Kit</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <script type="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+</head>
+<body>
+  <script type="text/x-handlebars">
+    <h2>Spring Framework & Ember.js</h2>
+
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" id="blogs">
+<div class="list-group col-xs-3">
+    {{#each blog in model}}
+			{{#link-to 'blogs.blog' blog class="list-group-item"}}{{blog.name}}{{/link-to}}
+			<p>{{blog.category.name}}</p>
+    {{/each}}
+</div>
+<div class="col-xs-9">
+	{{outlet}}
+</div>
+  </script>
+  
+    <script type="text/x-handlebars" id="blogs/blog">
+    <ul class="list-group">
+    {{#each post in model.posts}}
+      	<li class="list-group-item">{{post.comment}}
+		<br><br><p class="text-right">{{post.createDate}}</p>
+		<button class="btn btn-primary" {{action "sendToServer" post}}>Send Post to the Server</button>
+		</li>
+    {{/each}}
+    </ul>
+  </script>
+
+  <script src="js/libs/jquery-1.10.2.js"></script>
+  <script src="js/libs/handlebars-1.1.2.js"></script>
+  <script src="js/libs/ember-1.6.1.js"></script>
+  <script src="js/libs/ember-data.js"></script>
+  <script src="js/app.js"></script>
+  
+  <!-- to activate the test runner, add the "?test" query string parameter -->
+  <script src="tests/runner.js"></script>
+</body>
+</html>
