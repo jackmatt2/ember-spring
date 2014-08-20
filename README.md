@@ -3,7 +3,7 @@ ember-spring
 
 Using Ember.js with the Spring Framework.
 
-Resource from blog post: ...
+Resource from blog post: http://springember.blogspot.com.au/2014/08/using-ember-data-restadapter-with.html
 
 
 building
