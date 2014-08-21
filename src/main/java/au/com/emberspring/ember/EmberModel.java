@@ -1,6 +1,6 @@
 package au.com.emberspring.ember;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -27,7 +27,7 @@ public final class EmberModel extends ConcurrentHashMap<String, Object> {
 			sideLoad(entity);
 		}
 		
-		public Builder(Class<?> clazz, List<?> entities) {
+		public Builder(Class<?> clazz, Collection<?> entities) {
 			Assert.notNull(entities);
 			sideLoad(clazz, entities);
 		}
@@ -42,7 +42,7 @@ public final class EmberModel extends ConcurrentHashMap<String, Object> {
 			return this;
 		}
 		
-		public Builder sideLoad(Class<?> clazz, List<?> entities) {
+		public Builder sideLoad(Class<?> clazz, Collection<?> entities) {
 			sideLoadedItems.put(getPluralName(clazz), entities);
 			return this;
 		}
