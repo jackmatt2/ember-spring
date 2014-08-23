@@ -10,7 +10,10 @@ import au.com.emberspring.domain.Blog;
 import au.com.emberspring.domain.Category;
 import au.com.emberspring.domain.Post;
 
-
+/**
+ * Fake Dao for demonstration purposes
+ *
+ */
 @Repository
 public class FixtureDataDaoImpl implements FixtureDataDao {
 	

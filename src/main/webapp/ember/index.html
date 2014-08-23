@@ -17,9 +17,12 @@
   </script>
 
   <script type="text/x-handlebars" id="blogs">
-<div class="list-group col-xs-3">
+<div class="list-group col-xs-3 ">
     {{#each blog in model}}
-			{{#link-to 'blogs.blog' blog class="list-group-item"}}{{blog.name}}{{/link-to}}
+			{{#link-to 'blogs.blog' blog class="list-group-item clearfix"}}
+				{{blog.name}} 
+				<button class="btn btn-success btn-sm pull-right" {{action "save" blog}}>Save Blog</button>
+			{{/link-to}}
 			<p>{{blog.category.name}}</p>
     {{/each}}
 </div>
@@ -31,9 +34,9 @@
     <script type="text/x-handlebars" id="blogs/blog">
     <ul class="list-group">
     {{#each post in model.posts}}
-      	<li class="list-group-item">{{post.comment}}
+      	<li class="list-group-item clearfix">{{post.comment}}
 		<br><br><p class="text-right">{{post.createDate}}</p>
-		<button class="btn btn-primary" {{action "sendToServer" post}}>Send Post to the Server</button>
+		<button class="btn btn-success pull-right" {{action "save" post}}>Save Post</button>
 		</li>
     {{/each}}
     </ul>

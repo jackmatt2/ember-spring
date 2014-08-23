@@ -66,8 +66,10 @@ public class Blog implements EmberLinks {
 	
 	@JsonSetter
 	public void setCategory(Long id) {
-		this.category = new Category();
-		this.category.setId(id);
+		if(id != null) {
+			this.category = new Category();
+			this.category.setId(id);
+		}
 	}
 	
 	public Date getCreateDate() {
@@ -83,6 +85,7 @@ public class Blog implements EmberLinks {
 		return posts;
 	}
 	
+	@JsonSetter
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
 	}

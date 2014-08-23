@@ -5,8 +5,8 @@ App.ApplicationAdapter = DS.RESTAdapter.extend({
   namespace: 'emberspring'
 });
 
-//Serializer
-App.ApplicationSerializer = DS.RESTSerializer.extend({
+//Spring Serializer
+App.SpringSerializer = DS.RESTSerializer.extend({
 	  serializeIntoHash: function(hash, type, record, options) {
 			var serialized = this.serialize(record, options);
 			
@@ -16,6 +16,19 @@ App.ApplicationSerializer = DS.RESTSerializer.extend({
 			//remove the root element
 	    	Ember.merge(hash, serialized);
 	  }
+});
+
+//Application Serializer
+App.ApplicationSerializer = App.SpringSerializer.extend();
+
+//Blog Serializer
+App.BlogSerializer = App.SpringSerializer.extend(DS.EmbeddedRecordsMixin, {
+	//Force embedding the posts array into the payload to the server
+	attrs: {
+	    posts: {
+	      serialize: 'records'
+	    }
+	}
 });
 
 //Models
@@ -52,9 +65,23 @@ App.BlogsRoute = Ember.Route.extend({
   }
 });
 
+//Controllers
+App.BlogsController = Ember.ObjectController.extend({
+
+	actions : {
+		save : function(blog) {
+	        var self = this;
+	        blog.save().then(function() {
+				alert(self.store.metadataFor("blog").serverSaid);
+			});
+		}
+	}
+
+});
+
 App.BlogsBlogController = Ember.ObjectController.extend({
 	actions : {
-		sendToServer : function(post) {
+	save : function(post) {
 	        var self = this;
 			post.save().then(function() {
 				alert(self.store.metadataFor("post").serverSaid);

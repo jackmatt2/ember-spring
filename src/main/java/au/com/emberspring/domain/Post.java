@@ -52,8 +52,10 @@ public class Post {
 	
 	@JsonSetter
 	public void setBlog(Long id) {
-		this.blog = new Blog();
-		this.blog.setId(id);
+		if(id != null) {
+			this.blog = new Blog();
+			this.blog.setId(id);
+		}
 	}
 
 	public Date getCreateDate() {

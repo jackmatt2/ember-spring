@@ -2,3 +2,11 @@
 .ember-application {
     margin: 20px;
 }
+
+a.active > button {
+	visibility : visible;
+}
+
+a > button {
+	visibility : hidden;
+}
