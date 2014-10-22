@@ -40,7 +40,7 @@ public class BlogController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public EmberModel saveBlog(@RequestBody Blog blog, @PathVariable("id") final long blogId) {
-        return new EmberModel.Builder(blog)
+        return new EmberModel.Builder<Blog>(blog)
         		.addMeta("serverSaid", 
         				String.format("Received PUT request for Blog(%d) successfully with %d posts", blogId, blog.getPosts().size()))
         		.build();
@@ -53,7 +53,7 @@ public class BlogController {
     @ResponseStatus(HttpStatus.OK)
     public EmberModel getBlog(@PathVariable("id") final long blogId) {
     	Blog blog = blogService.getBlog(blogId);
-        return new EmberModel.Builder(blog)
+        return new EmberModel.Builder<Blog>(blog)
         		.sideLoad(Post.class, blog.getPosts())
         		.addMeta("totalRecords", 100)
         		.build();
@@ -65,7 +65,7 @@ public class BlogController {
     @ResponseStatus(HttpStatus.OK)
     public EmberModel getBlogs() {
     	List<Blog> blogs = blogService.getBlogs();
-    	return new EmberModel.Builder(Blog.class, blogs)
+    	return new EmberModel.Builder<Blog>(Blog.class, blogs)
     			.addMeta("totalRecords", blogs.size())
     			.build();
     }
@@ -77,7 +77,7 @@ public class BlogController {
     @ResponseStatus(HttpStatus.OK)
     public EmberModel getPosts(@PathVariable("id") final long blogId) {
     	List<Post> posts = blogService.getPosts(blogId);
-    	return new EmberModel.Builder(Post.class, posts)
+    	return new EmberModel.Builder<Post>(Post.class, posts)
     			.build();
     }
 

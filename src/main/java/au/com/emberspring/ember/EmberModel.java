@@ -17,7 +17,7 @@ public final class EmberModel extends ConcurrentHashMap<String, Object> {
         //Must use the builder
     }
 
-    public static class Builder implements au.com.emberspring.patterns.Builder<EmberModel> {
+    public static class Builder<T> implements au.com.emberspring.patterns.Builder<EmberModel> {
         private final ConcurrentMap<String, Object> sideLoadedItems = new ConcurrentHashMap<String, Object>();
         private final ConcurrentMap<String, Object> metaData = new ConcurrentHashMap<String, Object>();
 
@@ -26,7 +26,7 @@ public final class EmberModel extends ConcurrentHashMap<String, Object> {
             sideLoad(entity);
         }
 
-        public Builder(final Class<?> clazz, final Collection<?> entities) {
+        public Builder(final Class<T> clazz, final Collection<T> entities) {
             Assert.notNull(entities);
             sideLoad(clazz, entities);
         }
@@ -36,26 +36,26 @@ public final class EmberModel extends ConcurrentHashMap<String, Object> {
             sideLoad(rootName, entities);
         }
 
-        public Builder addMeta(final String key, final Object value) {
+        public Builder<T> addMeta(final String key, final Object value) {
             metaData.put(key, value);
             return this;
         }
 
-        public Builder sideLoad(final Object entity) {
+        public Builder<T> sideLoad(final Object entity) {
             if (entity != null) {
                 sideLoadedItems.put(getSingularName(entity.getClass()), entity);
             }
             return this;
         }
 
-        public Builder sideLoad(final Class<?> clazz, final Collection<?> entities) {
+        public <K> Builder<T> sideLoad(final Class<K> clazz, final Collection<K> entities) {
             if (entities != null) {
                 sideLoadedItems.put(getPluralName(clazz), entities);
             }
             return this;
         }
 
-        public Builder sideLoad(final String rootName, final Collection<?> entities) {
+        public Builder<T> sideLoad(final String rootName, final Collection<?> entities) {
             if (entities != null) {
                 sideLoadedItems.put(English.plural(rootName), entities);
             }

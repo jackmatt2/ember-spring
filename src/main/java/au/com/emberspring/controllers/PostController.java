@@ -40,7 +40,7 @@ public class PostController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public EmberModel savePost(@RequestBody Post post, @PathVariable("id") final long postId) {
-        return new EmberModel.Builder(post)
+        return new EmberModel.Builder<Post>(post)
         		.addMeta("serverSaid", String.format("Received PUT request for Post(%d) successfully", postId))
         		.build();
     }
