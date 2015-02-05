@@ -57,12 +57,12 @@ public class FixtureDataDaoImpl implements FixtureDataDao {
 		Post post1 = new Post();
 		post1.setId(11L);
 		post1.setCreateDate(new Date());
-		post1.setComment("{async : false} on your ember model relationships is necessary to get 'links' working!");
+		post1.setComment("use 'links' to lazy load collections working!");
 		
 		Post post2 = new Post();
 		post2.setId(12L);
 		post2.setCreateDate(new Date());
-		post2.setComment("DS.attr('date') an accepts ISO or millisecond format but is serialized in ISO format only.");
+		post2.setComment("DS.attr('date') accepts ISO or millisecond format but is serialized in ISO format only.");
 
 		Post post3 = new Post();
 		post3.setId(13L);
@@ -129,5 +129,14 @@ public class FixtureDataDaoImpl implements FixtureDataDao {
 	@Override
 	public List<Post> getPostsForBlog(long blogId) {
 		return getBlog(blogId).getPosts();
+	}
+
+	@Override
+	public Category getCategory(Long categoryId) {
+		Category category = new Category();
+		category.setId(2L);
+		category.setName("Programming");
+		
+		return category;
 	}
 }

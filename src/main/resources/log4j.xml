@@ -12,7 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="au.com.emberspring">
-		<level value="info" />
+		<level value="trace" />
 	</logger>
 	
 	<logger name="org.springframework">

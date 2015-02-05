@@ -16,3 +16,7 @@ target/
 .project
 .springBeans
 .classpath
+/bin/
+WebContent/
+
+/ember

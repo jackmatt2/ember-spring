@@ -2,7 +2,7 @@ App = Ember.Application.create();
 
 //Adapter
 App.ApplicationAdapter = DS.RESTAdapter.extend({
-  namespace: 'emberspring'
+  namespace: 'ember-spring'
 });
 
 //Spring Serializer

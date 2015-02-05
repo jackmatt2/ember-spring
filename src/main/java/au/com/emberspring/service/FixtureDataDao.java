@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import au.com.emberspring.domain.Blog;
+import au.com.emberspring.domain.Category;
 import au.com.emberspring.domain.Post;
 
 
@@ -15,5 +16,7 @@ public interface FixtureDataDao {
 	List<Blog> getAllBlogs();
 
 	List<Post> getPostsForBlog(long blogId);
+
+	Category getCategory(Long categoryId);
 
 }
